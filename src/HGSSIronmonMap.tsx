@@ -25,14 +25,30 @@ import {
   defaultPortalSize,
   defaultTrainerHeight,
   defaultTrainerWidth,
+  defaultGiftHeight,
+  defaultGiftWidth,
+  defaultTradeHeight,
+  defaultTradeWidth,
   kantoItems,
+  gifts as johtoGifts,
+  trades as johtoTrades,
+  rooms as johtoRooms,
+  kantoGifts,
+  kantoTrades,
+  kantoRooms,
 } from "./data";
 import {
   BoundingBoxCoords,
+  Gift,
+  GiftData,
   Item,
   ItemData,
   MapPortal,
   MapPortalGroup,
+  Room,
+  RoomData,
+  Trade,
+  TradeData,
   Trainer,
   TrainerData,
 } from "./IronmonMapUtils";
@@ -60,6 +76,9 @@ type RegionData = {
   name: "johto" | "kanto";
   trainers: TrainerData[];
   items: ItemData[];
+  gifts: GiftData[];
+  trades: TradeData[];
+  rooms: RoomData[];
   mapName: string;
   mapHeight: number;
   mapWidth: number;
@@ -104,6 +123,9 @@ export const HGSSIronmonMap = () => {
     name: "johto",
     trainers: johtoTrainers,
     items: johtoItems,
+    gifts: johtoGifts,
+    trades: johtoTrades,
+    rooms: johtoRooms,
     mapName: FullJohto,
     mapHeight: 5893,
     mapWidth: 13712,
@@ -127,6 +149,9 @@ export const HGSSIronmonMap = () => {
           name: "johto",
           trainers: johtoTrainers,
           items: johtoItems,
+          gifts: johtoGifts,
+          trades: johtoTrades,
+          rooms: johtoRooms,
           mapName: FullJohto,
           mapHeight: 5893,
           mapWidth: 13712,
@@ -144,6 +169,9 @@ export const HGSSIronmonMap = () => {
           name: "kanto",
           trainers: kantoTrainers,
           items: kantoItems,
+          gifts: kantoGifts,
+          trades: kantoTrades,
+          rooms: kantoRooms,
           mapName: FullKanto,
           mapHeight: 6994,
           mapWidth: 9736,
@@ -429,6 +457,29 @@ export const HGSSIronmonMap = () => {
                 {...item}
               />
             );
+          })}
+          {regionData.gifts.map((gift, index) => {
+            return (
+              <Gift
+                key={"gift-" + index}
+                height={defaultGiftHeight}
+                width={defaultGiftWidth}
+                {...gift}
+              />
+            );
+          })}
+          {regionData.trades.map((trade, index) => {
+            return (
+              <Trade
+                key={"trade-" + index}
+                height={defaultTradeHeight}
+                width={defaultTradeWidth}
+                {...trade}
+              />
+            );
+          })}
+          {regionData.rooms.map((room, index) => {
+            return <Room key={"room-" + index} {...room} />;
           })}
           {regionData.portals.map((portalGroup) => {
             return portalGroup.portals.map((portal, portalIndex) => (

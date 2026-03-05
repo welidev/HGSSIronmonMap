@@ -3,6 +3,8 @@ import "./ControlPanel.css";
 import PokeBall from "../IronmonMapUtils/assets/PokeballItem.png";
 import TMItem from "../IronmonMapUtils/assets/TMItem.png";
 import HiddenItem from "../IronmonMapUtils/assets/HiddenItem.png";
+import GiftIcon from "../IronmonMapUtils/assets/GiftItem.svg";
+import TradeIcon from "../IronmonMapUtils/assets/TradeItem.svg";
 import TrainerDemo from "../assets/demoGifs/TrainerDemo.gif";
 import ItemDemo from "../assets/demoGifs/ItemDemo.gif";
 import PortalClickDemo from "../assets/demoGifs/PortalClickDemo.gif";
@@ -68,6 +70,9 @@ export const ControlPanel = () => {
     highlightItems,
     highlightTMs,
     highlightHiddenItems,
+    highlightGifts,
+    highlightTrades,
+    showRooms,
     showMapPortals,
     showMapPortalLines,
     showMapPortalLinesType,
@@ -78,6 +83,9 @@ export const ControlPanel = () => {
     setHighlightItems,
     setHighlightTMs,
     setHighlightHiddenItems,
+    setHighlightGifts,
+    setHighlightTrades,
+    setShowRooms,
     setShowMapPortals,
     setShowMapPortalLines,
     setShowMapPortalLinesType,
@@ -191,6 +199,64 @@ export const ControlPanel = () => {
                     Hidden
                   </span>
                 }
+              />
+            </FormGroup>
+            <ControlPanelSubtitle>Gifts / Trades</ControlPanelSubtitle>
+            <FormGroup sx={{ paddingBottom: "4px" }}>
+              <FormControlLabel
+                control={
+                  <ControlPanelCheckbox
+                    checked={highlightGifts}
+                    onChange={() =>
+                      dispatch(setHighlightGifts(!highlightGifts))
+                    }
+                    size="small"
+                  />
+                }
+                label={
+                  <span className="checkbox-label">
+                    <img
+                      alt="Gift"
+                      className="item-checkbox-img"
+                      src={GiftIcon}
+                    />
+                    Gifts
+                  </span>
+                }
+              />
+              <FormControlLabel
+                control={
+                  <ControlPanelCheckbox
+                    checked={highlightTrades}
+                    onChange={() =>
+                      dispatch(setHighlightTrades(!highlightTrades))
+                    }
+                    size="small"
+                  />
+                }
+                label={
+                  <span className="checkbox-label">
+                    <img
+                      alt="Trade"
+                      className="item-checkbox-img"
+                      src={TradeIcon}
+                    />
+                    Trades
+                  </span>
+                }
+              />
+            </FormGroup>
+            <ControlPanelSubtitle>Rooms</ControlPanelSubtitle>
+            <FormGroup sx={{ paddingBottom: "4px" }}>
+              <FormControlLabel
+                control={
+                  <ControlPanelCheckbox
+                    checked={showRooms}
+                    onChange={() => dispatch(setShowRooms(!showRooms))}
+                    size="small"
+                  />
+                }
+                label="Show Rooms"
               />
             </FormGroup>
             <ControlPanelSubtitle>Map Portals</ControlPanelSubtitle>
